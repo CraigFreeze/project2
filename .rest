@@ -1,0 +1,90 @@
+###
+GET localhost:3000
+
+###
+GET http://localhost:3000/clients/ HTTP/1.1
+
+###
+GET http://localhost:3000/clients/66fccf5613a5a1c1b1fdee12 HTTP/1.1
+
+###
+POST http://localhost:3000/clients/ HTTP/1.1
+content-type: application/json
+
+{
+  "first_name": "SuccessfulCreation",
+  "last_name": "Henry",
+  "dob": "1900-05-20",
+  "email": "test.doe@example.com",
+  "phone": "111-123-4567",
+  "address": "123 Test St",
+  "city": "Test",
+  "state": "NV",
+  "zip_code": "62704",
+  "gender": "Male",
+  "marital_status": "Married",
+  "ssn": "123-45-6789",
+  "medicare_number": "1HG4321RT2",
+  "aca_id": null,
+  "created_at": "2023-01-15T10:35:20Z",
+  "updated_at": "2024-09-30T15:21:10Z"
+}
+
+###
+PUT http://localhost:3000/clients/66fccf5613a5a1c1b1fdee12 HTTP/1.1
+content-type: application/json
+
+{
+  "first_name": "SuccessfulEDIT",
+  "last_name": "Henry",
+  "dob": "1900-05-20",
+  "email": "test.doe@example.com",
+  "phone": "111-123-4567",
+  "address": "123 Test St",
+  "city": "Test",
+  "state": "NV",
+  "zip_code": "62704",
+  "gender": "Male",
+  "marital_status": "Married",
+  "ssn": "123-45-6789",
+  "medicare_number": "1HG4321RT2",
+  "aca_id": null,
+  "created_at": "2023-01-15T10:35:20Z",
+  "updated_at": "2024-09-30T15:21:10Z"
+}
+
+###
+DELETE http://localhost:3000/clients/66fccf5613a5a1c1b1fdee12 HTTP/1.1
+
+###
+GET http://localhost:3000/notes/ HTTP/1.1
+
+###
+GET http://localhost:3000/notes/66fcc4702e50d4a138907bee HTTP/1.1
+
+###
+POST http://localhost:3000/notes/ HTTP/1.1
+content-type: application/json
+
+{
+  "agent_id": 1,
+  "client_id": "66fcc32c2e50d4a138907be2",
+  "comment": "New note for that would be tied to a person",
+  "follow_up": true,
+  "follow_up_on": "2024-10-15"
+}
+
+###
+PUT http://localhost:3000/notes/66fcc4702e50d4a138907bee HTTP/1.1
+content-type: application/json
+
+{
+  "agent_id": 1,
+  "client_id": "66fcc32c2e50d4a138907be2",
+  "comment": "Updated note that would be tied to a real person",
+  "follow_up": true,
+  "follow_up_on": "2024-10-15"
+}
+
+###
+DELETE http://localhost:3000/notes/66fcc4702e50d4a138907bf5 HTTP/1.1
