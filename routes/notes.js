@@ -1,18 +1,20 @@
 const express = require('express');
 const routes = express.Router();
+const { mongoIdValidationRules, noteValidationRules, validate } = require('../validator.js')
+
 
 const indexController = require('../controllers/index.js')
 const notesController = require('../controllers/notes.js')
 
 routes.get('/', indexController.getAll('note'))
 
-routes.get('/:id', indexController.getOne('note'))
+routes.get('/:id', mongoIdValidationRules(), validate, indexController.getOne('note'))
 
-routes.post('/', notesController.createNote)
+routes.post('/', noteValidationRules(), validate, notesController.createNote)
 
-routes.put('/:id', notesController.updateNote)
+routes.put('/:id', noteValidationRules(), validate, notesController.updateNote)
 
-routes.delete('/:id', indexController.deleteOne('note'))
+routes.delete('/:id', mongoIdValidationRules(), validate, indexController.deleteOne('note'))
 
 
 module.exports = routes;

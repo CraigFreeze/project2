@@ -2,7 +2,6 @@ const db = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
 const createNote = async (req, res) => {
-    //#swagger.tags=['Notes']
     const note = {
         agent_id: req.body.agent_id,
         client_id: req.body.client_id,
@@ -19,7 +18,6 @@ const createNote = async (req, res) => {
 }
 
 const updateNote = async (req, res) => {
-    //#swagger.tags=['Notes']
     const noteId = new ObjectId(req.params.id)
     const note = {
         agent_id: req.body.agent_id,

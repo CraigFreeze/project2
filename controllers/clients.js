@@ -3,7 +3,6 @@ const ObjectId = require('mongodb').ObjectId;
 
 
 const createClient = async (req, res) => {
-    //#swagger.tags=['Clients']
     const client = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -31,7 +30,6 @@ const createClient = async (req, res) => {
 }
 
 const updateClient = async (req, res) => {
-    //#swagger.tags=['Clients']
     const clientId = new ObjectId(req.params.id)
     const client = {
         first_name: req.body.first_name,

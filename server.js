@@ -4,7 +4,6 @@ const bodyParser = require('body-parser')
 const mongodb = require('./data/database.js');
 const port = 3000;
 
-
 // Middle Ware
 app.use(bodyParser.json())
 app.use((req, res, next) => {

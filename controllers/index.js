@@ -9,7 +9,6 @@ const base = (req, res) => {
 
 const getAll = (collection) => {
     return async (req, res) => {
-        //#swagger.tags=['hi']
         const result = await db.getDb().db().collection(collection).find();
         result.toArray().then((contacts) => {
             res.setHeader('Content-Type', 'application/json');
@@ -20,7 +19,6 @@ const getAll = (collection) => {
 
 const getOne = (collection) => {
     return async (req, res) => {
-        //#swagger.tags=['hi!']
         const id = new ObjectId(req.params.id)
         const result = await db.getDb().db().collection(collection).find({ _id: id });
         result.toArray().then((contacts) => {
@@ -32,7 +30,6 @@ const getOne = (collection) => {
 
 const deleteOne = (collection) => {
     return async (req, res) => {
-        //#swagger.tags=['hi!!']
         const id = new ObjectId(req.params.id)
         const response = await db.getDb().db().collection(collection).deleteOne({ _id: id });
         if (response.deletedCount > 0) {

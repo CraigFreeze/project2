@@ -1,4 +1,4 @@
-const { body, validationResult } = require('express-validator')
+const { param, body, validationResult } = require('express-validator')
 
 const isSSN = (value) => {
     // SSN format: 3 digits - 2 digits - 4 digits
@@ -28,7 +28,7 @@ const clientValidationRules = () => {
         body('address').isString(),
         body('city').isString().isLength({ max: 20 }),
         body('state').trim().isLength({ max: 2 }),
-        body('zip_code').trim().isPostalCode(),
+        body('zip_code').trim().isLength({ max: 5 }),
         body('gender').custom(value => { return value == 'Male' || value == 'Female' }),
         body('marital_status').custom(value => { return value == 'Married' || value == 'Divorced' || value == 'Single' || value == 'Widowed' }),
         body('ssn').custom(isSSN),
@@ -39,13 +39,31 @@ const clientValidationRules = () => {
     ]
 }
 
+const noteValidationRules = () => {
+    return [
+        body('agent_id').trim().isLength({ max: 30 }),
+        body('client_id').trim().isLength({ max: 30 }),
+        body('comment').trim().isLength({ max: 3000 }),
+        body('follow_up').trim().isBoolean(),
+        body('follow_up_on').isISO8601().withMessage('Date must be in ISO 8601 format')
+    ]
+}
+
+const mongoIdValidationRules = () => {
+    return [
+        param('id').isLength({max: 40}) //isLength({ max: 4 })
+    ]
+}
+
 const validate = (req, res, next) => {
     const errors = validationResult(req)
     if (errors.isEmpty()) {
         return next()
     }
+
+    console.log(errors);
     const extractedErrors = []
-    errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
+    errors.array().map(err => extractedErrors.push({ [err.path]: err.msg }))
 
     return res.status(422).json({
         errors: extractedErrors,
@@ -53,6 +71,8 @@ const validate = (req, res, next) => {
 }
 
 module.exports = {
+    mongoIdValidationRules,
     clientValidationRules,
+    noteValidationRules,
     validate,
 }

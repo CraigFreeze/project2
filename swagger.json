@@ -1,176 +1,427 @@
 {
-    "swagger": "2.0",
-    "info": {
-      "title": "Users Api",
-      "description": "Users Api",
-      "version": "1.0.0"
+  "swagger": "2.0",
+  "info": {
+    "title": "My API",
+    "description": "Insurance API",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Insurance API"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     },
-    "host": "contacts-cv19.onrender.com",
-    "basePath": "/",
-    "schemes": [
-      "https"
-    ],
-    "paths": {
-      "/": {
-        "get": {
-          "tags": [
-            "Contacts API"
-          ],
-          "description": "",
-          "responses": {
-            "200": {
-              "description": "OK"
-            }
+    "/api-docs": {
+      "get": {
+        "tags": [
+          "API Docs"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/clients/": {
+      "get": {
+        "tags": [
+          "Clients"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       },
-      "/contacts/": {
-        "get": {
-          "tags": [
-            "Contacts"
-          ],
-          "description": "",
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "OK"
-            }
-          }
-        },
-        "post": {
-          "tags": [
-            "Contacts"
-          ],
-          "description": "",
-          "parameters": [
-            {
-              "name": "body",
-              "in": "body",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "firstName": {
-                    "example": "any"
-                  },
-                  "lastName": {
-                    "example": "any"
-                  },
-                  "email": {
-                    "example": "any"
-                  },
-                  "favoriteColor": {
-                    "example": "any"
-                  },
-                  "birthday": {
-                    "example": "any"
-                  }
+      "post": {
+        "tags": [
+          "Clients"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "first_name": {
+                  "example": "any"
+                },
+                "last_name": {
+                  "example": "any"
+                },
+                "dob": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "state": {
+                  "example": "any"
+                },
+                "zip_code": {
+                  "example": "any"
+                },
+                "gender": {
+                  "example": "any"
+                },
+                "marital_status": {
+                  "example": "any"
+                },
+                "ssn": {
+                  "example": "any"
+                },
+                "medicare_number": {
+                  "example": "any"
+                },
+                "aca_id": {
+                  "example": "any"
+                },
+                "created_at": {
+                  "example": "any"
+                },
+                "updated_at": {
+                  "example": "any"
                 }
               }
             }
-          ],
-          "responses": {
-            "204": {
-              "description": "No Content"
-            },
-            "500": {
-              "description": "Internal Server Error"
-            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/clients/{id}": {
+      "get": {
+        "tags": [
+          "Clients"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           }
         }
       },
-      "/contacts/{id}": {
-        "get": {
-          "tags": [
-            "Contacts"
-          ],
-          "description": "",
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "OK"
-            }
-          }
-        },
-        "put": {
-          "tags": [
-            "Contacts"
-          ],
-          "description": "",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "firstName": {
-                    "example": "any"
-                  },
-                  "lastName": {
-                    "example": "any"
-                  },
-                  "email": {
-                    "example": "any"
-                  },
-                  "favoriteColor": {
-                    "example": "any"
-                  },
-                  "birthday": {
-                    "example": "any"
-                  }
+      "put": {
+        "tags": [
+          "Clients"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "first_name": {
+                  "example": "any"
+                },
+                "last_name": {
+                  "example": "any"
+                },
+                "dob": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "state": {
+                  "example": "any"
+                },
+                "zip_code": {
+                  "example": "any"
+                },
+                "gender": {
+                  "example": "any"
+                },
+                "marital_status": {
+                  "example": "any"
+                },
+                "ssn": {
+                  "example": "any"
+                },
+                "medicare_number": {
+                  "example": "any"
+                },
+                "aca_id": {
+                  "example": "any"
+                },
+                "created_at": {
+                  "example": "any"
+                },
+                "updated_at": {
+                  "example": "any"
                 }
               }
             }
-          ],
-          "responses": {
-            "204": {
-              "description": "No Content"
-            },
-            "500": {
-              "description": "Internal Server Error"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Clients"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/notes/": {
+      "get": {
+        "tags": [
+          "Notes"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Notes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "agent_id": {
+                  "example": "any"
+                },
+                "client_id": {
+                  "example": "any"
+                },
+                "comment": {
+                  "example": "any"
+                },
+                "follow_up": {
+                  "example": "any"
+                },
+                "follow_up_on": {
+                  "example": "any"
+                }
+              }
             }
           }
-        },
-        "delete": {
-          "tags": [
-            "Contacts"
-          ],
-          "description": "",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "string"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/notes/{id}": {
+      "get": {
+        "tags": [
+          "Notes"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Notes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "agent_id": {
+                  "example": "any"
+                },
+                "client_id": {
+                  "example": "any"
+                },
+                "comment": {
+                  "example": "any"
+                },
+                "follow_up": {
+                  "example": "any"
+                },
+                "follow_up_on": {
+                  "example": "any"
+                }
+              }
             }
-          ],
-          "responses": {
-            "204": {
-              "description": "No Content"
-            },
-            "500": {
-              "description": "Internal Server Error"
-            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Notes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     }
   }
+}
