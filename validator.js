@@ -9,14 +9,6 @@ const isSSN = (value) => {
     return true;
 };
 
-const isMedicare = (value) => {
-    const medicareRegex = /^[1-9][A-Z][0-9A-Z]{5}[A-Z0-9]{1,2}$/;
-    if (!medicareRegex.test(value)) {
-        throw new Error('Invalid Medicare format. Expected format is 11AN-22N-33AA.');
-    }
-    return true;
-};
-
 
 const clientValidationRules = () => {
     return [
@@ -32,7 +24,7 @@ const clientValidationRules = () => {
         body('gender').custom(value => { return value == 'Male' || value == 'Female' }),
         body('marital_status').custom(value => { return value == 'Married' || value == 'Divorced' || value == 'Single' || value == 'Widowed' }),
         body('ssn').custom(isSSN),
-        body('medicare_number').custom(isMedicare),
+        body('medicare_number').isLength({ max: 50 }),
         body('aca_id').isLength({ max: 20 }),
         body('created_at').isISO8601().withMessage('Date must be in ISO 8601 format'),
         body('updated_at').isISO8601().withMessage('Date must be in ISO 8601 format')
