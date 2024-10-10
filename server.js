@@ -10,18 +10,19 @@ const cors = require('cors');
 const port = 3000;
 
 // Middle Ware
-app.use(bodyParser.json())
+app
+.use(bodyParser.json())
 //Basic express sesssion({..}) initialization.
-app.use(session({
+.use(session({
   secret: "secret",
   resave: false,
   saveUninitialized: true
 }))
 // init passport to use "express-session"
-app.use(passport.initialize())
+.use(passport.initialize())
 //allow passport to use "express-session"
-app.use(passport.session())
-app.use((req, res, next) => {
+.use(passport.session())
+.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Orgin', '*');
   res.setHeader(
     'Access-Control-Allow-Headers',
@@ -29,10 +30,10 @@ app.use((req, res, next) => {
   );
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   next();
-});
-app.use(cors({ methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'] }))
-app.use(cors({ origin: '*' }))
-app.use('/', require('./routes/index.js')); //Routes
+})
+.use(cors({ methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'] }))
+.use(cors({ origin: '*' }))
+.use('/', require('./routes/index.js')); //Routes
 
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,

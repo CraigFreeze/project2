@@ -4,16 +4,18 @@ const { mongoIdValidationRules, clientValidationRules, validate } = require('../
 
 const indexController = require('../controllers/index.js')
 const clientsController = require('../controllers/clients.js');
+const { isAuthenticated } = require("../middleware/authenticate.js")
+
 
 routes.get('/', indexController.getAll('client'))
 
-routes.get('/:id', mongoIdValidationRules(), validate, indexController.getOne('client'))
+routes.get('/:id', isAuthenticated, mongoIdValidationRules(), validate, indexController.getOne('client'))
 
-routes.post('/', clientValidationRules(), validate , clientsController.createClient)
+routes.post('/', isAuthenticated, clientValidationRules(), validate , clientsController.createClient)
 
-routes.put('/:id', clientValidationRules(), validate, clientsController.updateClient)
+routes.put('/:id', isAuthenticated, clientValidationRules(), validate, clientsController.updateClient)
 
-routes.delete('/:id', mongoIdValidationRules(), validate, indexController.deleteOne('client'))
+routes.delete('/:id', isAuthenticated, mongoIdValidationRules(), validate, indexController.deleteOne('client'))
 
 
 module.exports = routes;
