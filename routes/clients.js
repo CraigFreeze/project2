@@ -9,7 +9,7 @@ const { isAuthenticated } = require("../middleware/authenticate.js")
 
 routes.get('/', indexController.getAll('client'))
 
-routes.get('/:id', isAuthenticated, mongoIdValidationRules(), validate, indexController.getOne('client'))
+routes.get('/:id', mongoIdValidationRules(), validate, indexController.getOne('client'))
 
 routes.post('/', isAuthenticated, clientValidationRules(), validate , clientsController.createClient)
 
